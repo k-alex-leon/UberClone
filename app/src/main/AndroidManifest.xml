@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.uberclone">
+    <!-- permisos para usar internet -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- permiso para usar ubicacion de usuario exacta -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- PERMISO PARA PRENDER EL CELULAR -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- PERMISO PARA OBTENER ARCHIVOS EXTERNOS -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.UberClone">
+        <activity
+            android:name=".activities.HistoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.driver.NotificationBookingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.driver.CalificationClientActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.client.CalificationDriverActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.driver.MapDriverBookingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.client.MapClientBookingActivity"
+            android:exported="true" /> <!-- Necesario aceptar solicitud notif -->
+        <receiver
+            android:name=".receivers.AcceptReceiver"
+            android:enabled="true" />
+        <receiver
+            android:name=".receivers.CancelReceiver"
+            android:enabled="true" /> <!-- Necesario para las notif push -->
+        <service android:name=".services.MyFirebaseMessagingClient">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".activities.client.DetailRequestActivity"
+            android:exported="true"
+            android:parentActivityName=".activities.client.MapClientActivity" />
+        <activity
+            android:name=".activities.driver.MapDriverActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.client.MapClientActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:exported="true"
+            android:screenOrientation="locked">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+    </application>
+
+</manifest>
